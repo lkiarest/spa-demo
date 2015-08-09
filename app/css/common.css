@@ -1,0 +1,19 @@
+.oni-dialog-layout, .oni-dialog {
+    z-index: 3 !important;
+}
+
+.sgwidget {
+    width: auto !important;
+}
+
+.header {
+    background-color: #ddd;
+}
+
+.header .title {
+    text-indent: 10px;
+}
+
+.content {
+    padding-top: 10px;
+}

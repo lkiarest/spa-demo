@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            SPA DEMO
+        </title>
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="app/css/common.css">
+    </head>
+    <body>
+        <div class="shell container-fluid" ms-controller="root">
+            <div class="header">
+                <div class="row">
+                    <h3 class="title col-sm-5" ms-text="title"></h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#!/">首页</a></li>
+                            <li><a href="#!/demo">DEMO页面</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div ms-view=""></div>
+            </div>
+            <div class="footer"></div>
+        </div>
+        <script type="text/javascript" src="vendor/requirejs/require.js" data-main="main"></script>
+    </body>
+</html>

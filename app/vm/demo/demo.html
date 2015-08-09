@@ -1,0 +1,102 @@
+<div id="page-demo" class="page" ms-controller="demo">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="search-panel">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">姓名</span>
+                                <input class="form-control" placeholder="姓名" ms-duplex="searchParams.name">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">年龄</span>
+                                <input class="form-control" placeholder="年龄" ms-duplex="searchParams.age">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">工资</span>
+                                <input class="form-control" placeholder="工资" ms-duplex="searchParams.salary">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">其他查询条件</span>
+                                <input class="form-control" placeholder="其他">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">其他条件</span>
+                                <input class="form-control" placeholder="其他">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">其他</span>
+                                <input class="form-control" placeholder="其他">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="btn btn-default" ms-on-click="search">查询</div>
+                </div>
+            </div>
+            <div class="optBtns">
+                <div class="btn btn-default" ms-on-click="showAdd">新增</div>
+                <div class="btn btn-default" ms-on-click="del">批量删除</div>
+                <div class="btn btn-default" ms-click="refresh">刷新</div>
+            </div>
+            <div style="position:relative;width:100%;">
+                <div class="sgwidget" ms-widget="smartgrid, sg1, $opts"></div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form>
+                        <input type="hidden" ms-dulex="detailInfo.id" />
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" class="form-control" id="name" ms-duplex="detailInfo.name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">年龄</label>
+                            <input type="text" class="form-control" id="age" ms-duplex="detailInfo.age" placeholder="age">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">工资</label>
+                            <input type="text" class="form-control" id="salary" ms-duplex="detailInfo.salary" placeholder="salary">
+                        </div>
+                        <div class="btn btn-default" ms-on-click="save">保存</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ms-widget="dialog, delDlg, $delDlgOpts">
+        确认删除？
+    </div>
+    <div ms-widget="dialog, addDlg,$addDlgOpts">
+        <form>
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input type="text" class="form-control" id="name" ms-duplex="addInfo.name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="age">年龄</label>
+                <input type="text" class="form-control" id="age" ms-duplex="addInfo.age" placeholder="age">
+            </div>
+            <div class="form-group">
+                <label for="salary">工资</label>
+                <input type="text" class="form-control" id="salary" ms-duplex="addInfo.salary" placeholder="salary">
+            </div>
+        </form>
+    </div>
+</div>
