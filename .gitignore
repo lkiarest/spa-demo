@@ -1,6 +1,6 @@
 # 3rd pardy libs
 vendor
 # node js modules
-node-modules
+node-modules/
 # build output
 dist
