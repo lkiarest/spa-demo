@@ -37,7 +37,7 @@ define([
             defaultValue: "shirly", //列的默认值
             customClass: "ddd", //自定义此列单元格类
             toggle: false, //控制列的显示隐藏
-            width: "30%" //设置列的宽度
+            width: "26%" //设置列的宽度
         }, {
             key : "age",
             name : "年龄",
