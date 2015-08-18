@@ -1,12 +1,62 @@
 define([
-    "avalon",
+    'jquery',
     "css!./demo.css",
-    "oniui/smartgrid/avalon.smartgrid",
-    "oniui/dialog/avalon.dialog"
-    ], function(avalon) {
+    // "smartgrid/avalon.smartgrid",
+    "dialog/avalon.dialog",
+    "zTree"
+    ], function($) {
 
     var perPage = 10;
     var listdata = [];
+    var vmlist = null;
+    var ztree = null;
+
+    var zTreeClick = function(event, treeId, treeNode) {
+        alert(treeNode.tId + ", " + treeNode.name);
+    };
+
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: zTreeClick
+        }
+    };
+
+    var zNodes =[
+        { id:1, pId:0, name:"父节点1 - 展开", open:true},
+        { id:11, pId:1, name:"父节点11 - 折叠"},
+        { id:111, pId:11, name:"叶子节点111"},
+        { id:112, pId:11, name:"叶子节点112"},
+        { id:113, pId:11, name:"叶子节点113"},
+        { id:114, pId:11, name:"叶子节点114"},
+        { id:12, pId:1, name:"父节点12 - 折叠"},
+        { id:121, pId:12, name:"叶子节点121"},
+        { id:122, pId:12, name:"叶子节点122"},
+        { id:123, pId:12, name:"叶子节点123"},
+        { id:124, pId:12, name:"叶子节点124"},
+        { id:13, pId:1, name:"父节点13 - 没有子节点", isParent:true},
+        { id:2, pId:0, name:"父节点2 - 折叠"},
+        { id:21, pId:2, name:"父节点21 - 展开", open:true},
+        { id:211, pId:21, name:"叶子节点211"},
+        { id:212, pId:21, name:"叶子节点212"},
+        { id:213, pId:21, name:"叶子节点213"},
+        { id:214, pId:21, name:"叶子节点214"},
+        { id:22, pId:2, name:"父节点22 - 折叠"},
+        { id:221, pId:22, name:"叶子节点221"},
+        { id:222, pId:22, name:"叶子节点222"},
+        { id:223, pId:22, name:"叶子节点223"},
+        { id:224, pId:22, name:"叶子节点224"},
+        { id:23, pId:2, name:"父节点23 - 折叠"},
+        { id:231, pId:23, name:"叶子节点231"},
+        { id:232, pId:23, name:"叶子节点232"},
+        { id:233, pId:23, name:"叶子节点233"},
+        { id:234, pId:23, name:"叶子节点234"},
+        { id:3, pId:0, name:"父节点3 - 没有子节点", isParent:true}
+    ];
 
     function getDatas() { //随机产生列表
         var data = [],
@@ -15,7 +65,7 @@ define([
         for (var i = 0; i < number; i++) {
             data.push({
                 id: i,
-                name: "shirly"+i,
+                name: null,
                 age: parseInt(10 + Math.random() * 20),
                 // selected: i%3 ? false: true,
                 salary: parseInt(Math.random() * 100),
@@ -37,7 +87,8 @@ define([
             defaultValue: "shirly", //列的默认值
             customClass: "ddd", //自定义此列单元格类
             toggle: false, //控制列的显示隐藏
-            width: "26%" //设置列的宽度
+            width: "26%", //设置列的宽度
+            type: "string"
         }, {
             key : "age",
             name : "年龄",
@@ -75,7 +126,7 @@ define([
     };
 
     var showPageData = function() {
-        var sg1 = avalon.vmodels.sg1;
+        var sg1 = vmlist;
         var pager = sg1.pager;
 
         if (! pager) {
@@ -104,12 +155,12 @@ define([
 
         // update list
         var info = vm.detailInfo;
-        var list = avalon.vmodels.sg1.data;
+        var list = vmlist.data;
         for (var i = 0, len = list.length; i < len; i ++) {
             var item = list[i];
             if (info.id ===  item.id) {
                 list[i] = info;
-                avalon.vmodels.sg1.render(list);
+                vmlist.render(list);
                 return;
             }
         }
@@ -134,7 +185,7 @@ define([
     };
 
     var del = function() {
-        var list = avalon.vmodels.sg1.getSelected();
+        var list = vmlist.getSelected();
         if (list.length === 0) {
             console.log("no record selected !");
             return;
@@ -177,12 +228,15 @@ define([
         return ret;
     };
 
+    var _addDlg = null;
+    var _delDlg = null;
+
     var vm = avalon.define({
         $id: "demo",
         detailInfo: {},
         searchParams: {
             name: "",
-            age: "",
+            age: null,
             salary: ""
         },
         search:updateList,
@@ -193,19 +247,25 @@ define([
             salary: ""
         },
         showAdd: function() {
-            avalon.vmodels["addDlg"].toggle = true;
+            _addDlg.toggle = true;
         },
         $addDlgOpts: {
             onConfirm: function() {
                 add();
+            },
+            onInit: function(vm) {
+                _addDlg = vm;
             }
         },
         del: function() {
-            avalon.vmodels["delDlg"].toggle = true;
+            _delDlg.toggle = true;
         },
         $delDlgOpts: {
             onConfirm: function(){
                 del();
+            },
+            onInit: function(vm) {
+                _delDlg = vm;
             }
         },
         $opts: {
@@ -214,6 +274,9 @@ define([
             htmlHelper: htmlHelper,
             selectable: {
                 type: "Checkbox"
+            },
+            onInit: function(vm) {
+                vmlist = vm;
             },
             onRowSelect: function(rowData, isSelected, dataIndex) {
                 isSelected && (vm.detailInfo = rowData);
@@ -241,7 +304,7 @@ define([
     return avalon.controller(function($ctrl) {
         // 视图渲染后，意思是avalon.scan完成
         $ctrl.$onRendered = function() {
-
+            ztree = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
         };
         // 进入视图
         $ctrl.$onEnter = function() {

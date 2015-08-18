@@ -1,4 +1,4 @@
-define(["avalon", "mmState"], function(avalon) {
+define(["mmState"], function() {
 
     // 重写模板加载器，改为用text插件加载
     avalon.require = require;
@@ -22,6 +22,16 @@ define(["avalon", "mmState"], function(avalon) {
             "": {
                 templateUrl: "app/vm/demo/demo.html",
                 controllerUrl: "app/vm/demo/demo"
+                // viewCache: true
+            }
+        }
+    }).state("login", {
+        url: "/login",
+        views: {
+            "": {
+                templateUrl: "app/vm/login/login.html",
+                controllerUrl: "app/vm/login/login"
+                // viewCache: true
             }
         }
     });
@@ -34,12 +44,7 @@ define(["avalon", "mmState"], function(avalon) {
             //root.page = mmState.currentState.stateName.split(".")[1];
         },
         onViewEnter: function(newNode, oldNode) {
-            avalon(oldNode).animate({
-                marginLeft: "-100%"
-            }, 500, "easein", function() {
-                oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
-            });
-             
+            oldNode.parentNode && oldNode.parentNode.removeChild(oldNode)
         } // 不建议使用动画，因此实际使用的时候，最好去掉onViewEnter和ms-view元素上的oni-mmRouter-slide
 
     });
@@ -48,6 +53,8 @@ define(["avalon", "mmState"], function(avalon) {
         avalon.history.start({
             basepath: "/"
         });
+
+        avalon.scan();
     };
 
     return {

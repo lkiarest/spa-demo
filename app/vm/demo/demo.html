@@ -1,6 +1,9 @@
 <div id="page-demo" class="page" ms-controller="demo">
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-2">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="col-sm-8">
             <div class="search-panel">
                 <div class="body">
                     <div class="row">
@@ -54,7 +57,7 @@
                 <div class="btn btn-default" ms-click="refresh">刷新</div>
             </div>
             <div style="position:relative;width:100%;">
-                <div class="sgwidget" ms-widget="smartgrid, sg1, $opts"></div>
+                <!-- <div class="sgwidget" ms-widget="smartgrid, $, $opts"></div> -->
             </div>
         </div>
         <div class="col-sm-2">
@@ -80,10 +83,10 @@
             </div>
         </div>
     </div>
-    <div ms-widget="dialog, delDlg, $delDlgOpts">
+    <div ms-widget="dialog, $, $delDlgOpts">
         确认删除？
     </div>
-    <div ms-widget="dialog, addDlg,$addDlgOpts">
+    <div ms-widget="dialog, $, $addDlgOpts">
         <form>
             <div class="form-group">
                 <label for="name">姓名</label>
