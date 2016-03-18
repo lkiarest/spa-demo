@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>index</title>
+    <style type="text/css">
+        * {
+            margin:0; padding:0;
+        }
+        html, body {
+            height: 100%;
+        }
+        .wrapper > header {
+            border-bottom: 1px solid #aaa;
+            box-sizing: border-box;
+        }
+        .wrapper > header h3 {
+            font-size: 24px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .wrapper {
+            min-height: 100%;
+            overflow: hidden;
+        }
+        .content {
+            padding-bottom: 30px;
+        }
+        footer {
+            height: 30px;
+            line-height: 30px;
+            margin-top: -30px;
+            text-align: center;
+            background-color: #eee;
+            border-top: 1px solid #aaa;
+            box-sizing: border-box;
+        }
+        .box {
+             background:#eee;
+        }
+        .box1 {
+            width: 200px;
+            min-height: 100%;
+            float: left;
+            margin-bottom:-3000px; padding-bottom:3000px;
+            border-right: 1px solid #aaa;
+        }
+        .box1:before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        .box2 {
+            padding-left: 10px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+        .child {
+            display: inline-block;
+            border: 0px solid #ddd;
+            background-color: #eee;
+            position: absolute;
+            width: 200px;
+            top: 101px;
+            bottom:0px;
+        }
+        .child ul li {
+            padding: 8px 10px;
+            background-color: #ddd;
+            border-bottom: 1px solid #aaa;
+        }
+        article p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h3>两栏自适应布局 + 菜单高度100% + footer sticky</h3>
+        </header>
+        <section class="content">
+            <div class="box box1">
+                <div class="child">
+                    <ul>
+                        <li>菜单 1</li>
+                        <li>菜单 2</li>
+                        <li>菜单 3</li>
+                        <li>菜单 4</li>
+                        <li>菜单 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box box2">
+                <p style="float:right;margin-right:10px;">右边界-></p>
+                <article>
+                    <header><h3>stickUp</h3></header>
+                    <p> a jQuery plugin </p>
+                    <p>A simple plugin that "sticks" an element to the top of the browser window while scrolling past it, always keeping it in view. This plugin works on multi-page sites, but has additional features for one-pager layouts.</p>
+                    <p>Please Visit the GitHub Page for installation instructions.</p>
+                </article>
+                <article style="margin-top: 20px;">
+                    <header><h3>@keyframes</h3></header>
+                    <p>通过 @keyframes 规则，您能够创建动画。</p>
+                    <p>创建动画的原理是，将一套 CSS 样式逐渐变化为另一套样式。</p>
+                    <p>在动画过程中，您能够多次改变这套 CSS 样式。</p>
+                    <p>以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，等价于 0% 和 100%。</p>
+                    <p>0% 是动画的开始时间，100% 动画的结束时间。</p>
+                    <p>为了获得最佳的浏览器支持，您应该始终定义 0% 和 100% 选择器。</p>
+                    <p>注释：请使用动画属性来控制动画的外观，同时将动画与选择器绑定。</p>
+                </article>
+                <article style="margin-top: 20px;">
+                    <header><h3>@animation</h3></header>
+                    <p>CSS3中真正的动画属性是animation，而前面的transform和transition都只是对DOM元素的变形或者是状态的过渡。实际上，CSS3所支持的动画效果只是填充动画，也就是说先设定整个动画生命周期中的几个关键状态（key  frame，关键帧），然后动画将自行计算并模拟关键帧之间的过渡。那么在设置animation的属性之前就必须先设定好关键帧了。</p>
+                    <p>
+                    关键帧@keyframes的语法结构如下：
+                    <pre><code>
+@keyframesNAME {
+         a% {
+         /*CSS属性*/
+         }
+         b% {
+                  /*CSS属性*/
+         }
+         ...
+}
+                    </code></pre>
+                    </p>
+                </article>
+            </div>
+        </section>
+    </div>
+    <footer>
+        版权说明@www.qintianxiang.com
+    </footer>
+</body>
+</html>
